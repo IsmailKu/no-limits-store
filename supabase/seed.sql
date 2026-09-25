@@ -1,6 +1,8 @@
 insert into public.categories(name,slug,sort_order) values
 ('Протеин','protein',10),('Креатин','creatine',20),('Аминокислоты','amino',30),('Предтреники','preworkout',40),
-('Витамины','vitamins',50),('Жиросжигатели','fat-burners',60),('Аксессуары','accessories',70)
+('Витамины','vitamins',50),('Жиросжигатели','fat-burners',60),('Пептиды','peptides',70),
+('Гейнеры','gainers',80),('Бустеры тестостерона','testosterone-boosters',90),
+('Добавки для суставов и связок','joint-support',100),('L-карнитины','l-carnitine',110),('Для ПКТ','pct',120)
 on conflict (slug) do nothing;
 
 insert into public.products(slug,name,category_id,price,old_price,stock,weight,flavor,description,badge,image_url,sort_order)
@@ -14,14 +16,14 @@ from (values
 ('vamp-juice','CORE LABS VAMP JUICE','vitamins',1990::numeric,null,'80 капс.',null,'Комплекс Core Labs в капсулах.',null,'/products/real/vamp-cutout.webp',60),
 ('lotus-black','LOTUS BLACK FAT BURNER','fat-burners',2390::numeric,null,'80 капс.',null,'Капсульный комплекс для контроля формы.','НОВИНКА','/products/real/lotus-cutout.webp',70),
 ('zinc','FUELUP ZINC PICOLINATE','vitamins',1490::numeric,null,'50 мг',null,'Пиколинат цинка в удобном капсульном формате.',null,'/products/real/zinc-cutout.webp',80),
-('carnitine','DY L-CARNITINE XL','fat-burners',1690::numeric,null,'1000 мл','Ананас','Жидкий L-карнитин DY Nutrition.',null,'/products/real/carnitine-cutout.webp',90),
-('mass','ULTRA MASS','protein',3790::numeric,4290::numeric,'3000 г','Chocolate Caramel','Высококалорийный гейнер с белково-углеводной формулой.','-20%','/products/real/mass-cutout.webp',100),
-('animal-flex','ANIMAL FLEX','vitamins',3190::numeric,null,'44 пакета',null,'Комплексная поддержка суставов и связок.',null,'/products/real/flex-cutout.webp',110),
+('carnitine','DY L-CARNITINE XL','l-carnitine',1690::numeric,null,'1000 мл','Ананас','Жидкий L-карнитин DY Nutrition.',null,'/products/real/carnitine-cutout.webp',90),
+('mass','ULTRA MASS','gainers',3790::numeric,4290::numeric,'3000 г','Chocolate Caramel','Высококалорийный гейнер с белково-углеводной формулой.','-20%','/products/real/mass-cutout.webp',100),
+('animal-flex','ANIMAL FLEX','joint-support',3190::numeric,null,'44 пакета',null,'Комплексная поддержка суставов и связок.',null,'/products/real/flex-cutout.webp',110),
 ('animal-pak','ANIMAL PAK','vitamins',3490::numeric,null,'44 пакета',null,'Ежедневный витаминно-минеральный комплекс.','ХИТ','/products/real/pak-cutout.webp',120),
-('shaker','NO LIMITS SHAKER','accessories',690::numeric,null,'700 мл',null,'Фирменный шейкер NO LIMITS для тренировок.',null,'/products/real/shaker-cutout.webp',130),
-('retatrutide','RETATRUTIDE','amino',2890::numeric,null,'4 мг',null,'Специализированный продукт; перед применением требуется консультация.',null,'/products/real/retatrutide-cutout.webp',140)
+('shaker','NO LIMITS SHAKER',null,690::numeric,null,'700 мл',null,'Фирменный шейкер NO LIMITS для тренировок.',null,'/products/real/shaker-cutout.webp',130),
+('retatrutide','RETATRUTIDE','peptides',2890::numeric,null,'4 мг',null,'Специализированный продукт; перед применением требуется консультация.',null,'/products/real/retatrutide-cutout.webp',140)
 ) as v(slug,name,category_slug,price,old_price,weight,flavor,description,badge,image_url,sort_order)
-join public.categories c on c.slug=v.category_slug
+left join public.categories c on c.slug=v.category_slug
 on conflict (slug) do nothing;
 
 -- После создания пользователя в Supabase Auth назначьте роль администратора в SQL Editor:
