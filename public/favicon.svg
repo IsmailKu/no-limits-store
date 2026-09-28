@@ -1,6 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="NO LIMITS">
-  <rect width="64" height="64" rx="13" fill="#080808"/>
-  <path d="M10 49 27 13l15 36h-9L27 27 18 49Z" fill="#fff"/>
-  <path d="M37 49 51 18h9L46 49Z" fill="#A5FF4D"/>
-  <path d="M47 43h12l-3 6H44Z" fill="#fff"/>
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#151a13"/>
+      <stop offset="1" stop-color="#030504"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#tile)"/>
+  <rect x=".5" y=".5" width="63" height="63" rx="13.5" fill="none" stroke="#a5ff4d" stroke-opacity=".24"/>
+  <g transform="translate(-.8 16.6) scale(.12)">
+    <path d="M56 252 168 0 280 252h-41L168 92 103 252Z" fill="#fff"/>
+    <path d="M280 204h205l-28 48H239l21-48Z" fill="#fff"/>
+    <path d="M239 252 352 0h43L280 252Z" fill="#a5ff4d"/>
+  </g>
 </svg>
